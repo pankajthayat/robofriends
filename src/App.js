@@ -3,6 +3,7 @@ import CardList from "./CardList";
 import { robots } from "./robots"
 import SearchBox from "./SearchBox"
 import "./app.css"
+import Scroll from "./Scroll"
 class App extends Component{
     state={
         robots:[],
@@ -27,15 +28,23 @@ class App extends Component{
     }
 
     render(){
-        console.log(this.state.robots)
-        return(
-            <div className="tc">
-            <h1 className="f2">RoboFriends</h1>
-            <SearchBox  searchChange={this.onSearchChange}/>
-            <CardList robots={this.state.robots} searchField={this.state.searchField}/>
-            </div>
-            
-        )
+        if(this.state.robots.length==0)
+        {
+            return <h1>Loading...</h1>;
+        }
+        else{
+            return(
+                <div className="tc">
+                <h1 className="f2">RoboFriends</h1>
+                <SearchBox  searchChange={this.onSearchChange}/>
+                <Scroll>
+                <CardList robots={this.state.robots} searchField={this.state.searchField}/>
+                </Scroll>
+                </div>
+                
+            )
+        }
+
     }
 
 }
