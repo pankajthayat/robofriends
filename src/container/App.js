@@ -1,9 +1,8 @@
 import React , { Component }from "react";
-import CardList from "./CardList";
-import { robots } from "./robots"
-import SearchBox from "./SearchBox"
+import CardList from "../component/CardList";
+import SearchBox from "../component/SearchBox"
 import "./app.css"
-import Scroll from "./Scroll"
+import Scroll from "../component/Scroll"
 class App extends Component{
     state={
         robots:[],
@@ -21,7 +20,7 @@ class App extends Component{
     }
     onSearchChange=(e)=>{
         let searchField=e.target.value;
-        let filteredRobots=robots.filter(robot=>{
+        let filteredRobots=this.state.robots.filter(robot=>{
             return robot.name.toLowerCase().includes(searchField.toLowerCase())
         })
         this.setState({robots:filteredRobots,searchField})
